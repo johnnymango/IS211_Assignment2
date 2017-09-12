@@ -16,7 +16,7 @@ args = parser.parse_args()
 url = args.url
 
 
-# Sets up the Logger to catch errors and create error.log file
+# Sets up the Logger to write errors passed to it and create error.log file
 LOG_FILENAME  = 'error.log'
 logging.basicConfig(filename=LOG_FILENAME,
                     level=logging.ERROR,)
@@ -27,13 +27,12 @@ logger = logging.getLogger('assignment2')
 def downloadData(urlname):
    response = urllib2.urlopen(urlname)
    mydata = csv.reader(response)
-#Skip the header row
    next(mydata)
    return mydata
 
 
 # Function processes data by checking the datetime format of the bday,
-# logging errors against this error and creating up the dict.
+# logging errors against this check and creating the dict.
 def processData(mydata):
     mydict = {}
     line_number = 1
